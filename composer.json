@@ -1,0 +1,17 @@
+{
+    "name": "giorgi/test3",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Giorgi Tsintsadze",
+            "email": "giorga1993@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*"
+    }
+}

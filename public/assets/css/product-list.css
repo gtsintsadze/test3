@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka&display=swap");
+* {
+  font-family: "Fredoka", serif;
+}
+
+.main-container, .product-list-footer {
+  width: 100%;
+  max-width: 1350px;
+  margin: auto;
+  padding: 25px 0;
+}
+
+.product-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 3px solid rgb(29, 29, 29);
+}
+
+#product-add-btn, #product-delete-btn {
+  margin-left: 20px;
+  box-shadow: 2px 3px 2px rgb(29, 29, 29);
+  cursor: pointer;
+  outline: none;
+  border: 1px solid rgb(29, 29, 29);
+}
+
+.product-list-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 50px;
+  padding-bottom: 40%;
+}
+
+.product {
+  margin-top: 25px;
+  padding: 40px 0;
+  border: 2px solid rgb(29, 29, 29);
+  text-align: center;
+}
+
+.product-list-footer {
+  padding: 25px 0;
+  margin: auto;
+  text-align: center;
+  border-top: 3px solid rgb(29, 29, 29);
+}
+
+/*# sourceMappingURL=product-list.css.map */
