@@ -18,22 +18,22 @@
     </div>
 
     <div class="product-desc">
-        <form action="" id="product-form" class="product-add-form">
+        <form action="" method="post" id="product-form" class="product-add-form">
             <div class="product-inputs">
                 <label for="sku">
                     <span>
                        SKU
                     </span>
-                    <input type="text" placeholder="#sku" class="ras">
+                    <input type="text" placeholder="#sku" id="sku">
                 </label>
                 <label for="name"> <span>Name</span>
-                    <input type="text" placeholder="#name">
+                    <input type="text" placeholder="#name" id="name">
                 </label>
                 <label for="price">
                     <span>
                         Price ($)
                     </span>
-                    <input type="text" placeholder="#price">
+                    <input type="text" placeholder="#price" id="price">
                 </label>
             </div>
 
@@ -50,21 +50,21 @@
             <div class="products">
                 <div id="DVD" class="dvd-container">
                     <label for="dvdSize">Size (MB)</label>
-                    <input type="number" placeholder="#size">
+                    <input type="number" placeholder="#size" id="size">
                     <h2>"Product Description"</h2>
                 </div>
                 <div id="furniture" class="furniture-container">
                     <label for="furnitureHeight">Height (CM)</label>
-                    <input type="number" placeholder="#height">
+                    <input type="number" placeholder="#height" id="height">
                     <label for="furnitureWidth">Width (CM)</label>
-                    <input type="number" placeholder="#width">
+                    <input type="number" placeholder="#width" id="width">
                     <label for="furnitureLength">length (CM)</label>
-                    <input type="number" placeholder="#length">
+                    <input type="number" placeholder="#length" id="length">
                     <h2>"Product Description"</h2>
                 </div>
                 <div id="book" class="book-container">
                     <label for="bookWeight">Weight (KG)</label>
-                    <input type="number" placeholder="#weight">
+                    <input type="number" placeholder="#weight" id="weight">
                     <h2>"Product Description"</h2>
                 </div>
             </div>

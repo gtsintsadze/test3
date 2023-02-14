@@ -17,4 +17,9 @@ switch ($page) {
         break;
     case @"/addproduct":
         return $template->render("add-product.php", );
+    case @"/posted_data":
+        if ($requestMethod === "POST")
+        {
+            return $template->render("product-list.php");
+        }
 }
