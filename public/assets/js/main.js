@@ -9,6 +9,8 @@ function addProduct()
 function saveProduct()
 {
 
+    document.querySelector(".saved-message").style.display = "block";
+
 }
 
 function cancel()

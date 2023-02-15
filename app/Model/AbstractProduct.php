@@ -3,8 +3,9 @@
 namespace app\Model;
 
 use app\Core\Database;
+use app\Core\Model;
 
-abstract class AbstractProduct extends Database
+abstract class AbstractProduct extends Model
 {
 
     private string $sku;

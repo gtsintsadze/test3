@@ -20,10 +20,7 @@
             <div class="product" id="1">
                 <input type="checkbox" class="delete-checkbox">
                 <div class="product-desc">
-                    <div class="product-sku"<?php echo "<pre>";
-                    var_dump($_POST);
-                    echo "</pre>";
-                    exit;?></div>
+                    <div class="product-sku"><?php echo $item["sku"]?></div>
                     <div class="product-name"><?php echo $item["name"]?></div>
                     <div class="product-price"><?php echo $item["price"]?></div>
                     <div class="product-desc"></div>
