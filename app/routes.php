@@ -17,4 +17,15 @@ switch ($page) {
         break;
     case @"/addproduct":
         return $template->render("add-product.php", );
+        break;
+    case @"/add-product":
+        if ($requestMethod === "POST")
+        {
+            echo "<pre>";
+            var_dump($_POST);
+            echo "</pre>";
+            exit;
+        }
+
+        break;
 }

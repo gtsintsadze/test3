@@ -1,3 +1,7 @@
+// var script = document.createElement('script');
+// script.src = 'https://code.jquery.com/jquery-3.6.3.min.js'; // Check https://jquery.com/ for the current version
+// document.getElementsByTagName('head')[0].appendChild(script);
+
 function addProduct()
 {
     document.getElementById("product-add-btn")
@@ -6,11 +10,27 @@ function addProduct()
     }
 }
 
-function saveProduct()
-{
+function saveProduct() {
+    let dataForSend = {}
 
-    document.querySelector(".saved-message").style.display = "block";
+    let inputs = Array.from(document.querySelectorAll("#product-form input"))
 
+    inputs = inputs.filter(i => i.value)
+
+    inputs.forEach(i => dataForSend[i.id] = i.value)
+    dataForSend["product_type"] = document.querySelector("#productType").value
+
+    $.ajax({
+        type: "POST",
+        url: "add-product",
+        data: dataForSend,
+    }).done(function () {
+        let inputs = Array.from(document.querySelectorAll("#product-form input"))
+        // inputs.map(p => p.value = "")
+        for(let index in inputs) {
+            inputs[index].value = ""
+        }
+    })
 }
 
 function cancel()
@@ -21,31 +41,25 @@ function cancel()
     }
 }
 
-
 function typeSwitcher()
 {
-    let e = document.querySelector("#productType").value;
-    let dvd = document.querySelector(".dvd-container");
-    let furniture = document.querySelector(".furniture-container")
-    let book = document.querySelector(".book-container")
-    if (e === "dvd")
-    {
-        dvd.style.display = "grid"
-        book.style.display = "none"
-        furniture.style.display = "none"
-    }
-    if (e === "furniture")
-    {
-        furniture.style.display = "grid"
-        book.style.display = "none"
-        dvd.style.display = "none"
-    }
-    if (e === "book")
-    {
-        book.style.display = "grid"
-        dvd.style.display = "none"
-        furniture.style.display = "none"
-    }
+    let productsInput = Array.from(document.querySelectorAll(".products input"))
+    for (let index in productsInput) productsInput[index].value = ""
+
+    let dvd = $(".dvd-container")
+    let furniture = $(".furniture-container")
+    let book = $(".book-container")
+
+    let typeValue = document.querySelector("#productType").value
+
+    if (typeValue === "dvd") dvd.css("display", "block")
+    else dvd.css("display", "none")
+
+    if (typeValue === "furniture") furniture.css("display", "block")
+    else furniture.css("display", "none")
+
+    if (typeValue === "book") book.css("display", "block")
+    else book.css("display", "none")
 }
 
 function deleteProduct()
