@@ -31,6 +31,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 50px;
   padding-bottom: 40%;
+  overflow-y: scroll;
 }
 
 .product {

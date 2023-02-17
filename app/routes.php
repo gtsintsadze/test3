@@ -21,11 +21,26 @@ switch ($page) {
     case @"/add-product":
         if ($requestMethod === "POST")
         {
-            echo "<pre>";
-            var_dump($_POST);
-            echo "</pre>";
-            exit;
-        }
+            $product_Type = $_POST["product_type"];
 
+            $sku = $_POST["sku"];
+            $name = $_POST["name"];
+            $price = $_POST["price"];
+
+            if ($product_Type === "dvd")
+            {
+                // todo
+            }
+
+            if ($product_Type === "furniture")
+            {
+                // todo
+            }
+
+            if ($product_Type === "book")
+            {
+                // todo
+            }
+        }
         break;
 }

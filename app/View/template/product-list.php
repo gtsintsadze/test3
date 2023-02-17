@@ -15,19 +15,32 @@
             <button id="product-delete-btn" onclick="deleteProduct()">MASS DELETE</button>
         </div>
     </div>
-<?php foreach ($stmt as $item):?>
+
     <div class="product-list-content">
-            <div class="product" id="1">
+        <?php foreach ($stmt as $item):?>
+            <div class="product" id="<?php echo $item['product_id']?>">
                 <input type="checkbox" class="delete-checkbox">
                 <div class="product-desc">
                     <div class="product-sku"><?php echo $item["sku"]?></div>
                     <div class="product-name"><?php echo $item["name"]?></div>
-                    <div class="product-price"><?php echo $item["price"]?></div>
-                    <div class="product-desc"></div>
+                    <div class="product-price"><?php echo $item["price"], " $" ?> </div>
+                    <div class="product-desc"><?php echo "Size: 777" ?></div>
                 </div>
             </div>
+        <?php endforeach; ?>
+
+        <div class="product" id="">
+            <input type="checkbox" class="delete-checkbox">
+            <div class="product-desc">
+                <div class="product-sku">rame1</div>
+                <div class="product-name">rame2</div>
+                <div class="product-price">23123</div>
+                <div class="product-desc">12312</div>
+            </div>
+        </div>
+
     </div>
-<?php endforeach; ?>
+
     <div class="product-list-footer">
         <footer>
             Scandiweb Test assignment

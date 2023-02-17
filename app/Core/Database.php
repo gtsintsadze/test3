@@ -35,9 +35,7 @@ class Database
 
     public function save($tableName, array $keyValue)
     {
-        $keys = array_keys($keyValue);
-        $value = array_values($keyValue);
-        return $this->pdo->query('INSERT INTO product ("sku") VALUES ("")');
+
     }
 
     public function delete()
