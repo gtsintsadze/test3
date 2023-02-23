@@ -11,6 +11,6 @@ class Book extends AbstractProduct
 
     public function getWeight()
     {
-        $this->getData("weight");
+        // todo
     }
 }

@@ -2,7 +2,6 @@
 
 namespace app\Model;
 
-use app\Core\Database;
 use app\Core\Model;
 
 abstract class AbstractProduct extends Model
@@ -14,33 +13,33 @@ abstract class AbstractProduct extends Model
 
     public function setSku(string $sku): void
     {
-        $this->sku = $sku;
+        $this->setData("sku", $sku);
     }
 
     public function getSku(): string
     {
-        return $this->sku;
+        return $this->getData("sku");
     }
 
 
     public function setName(string $name): void
     {
-        $this->name = $name;
+        $this->setData("name", $name);
     }
 
     public function getName(): string
     {
-        return $this->name;
+        return $this->getData("name");
     }
 
     public function setPrice(float $price): void
     {
-        $this->price = $price;
+        $this->setData("price", $price);
     }
 
     public function getPrice(): float
     {
-        return $this->price;
+        return $this->getData("price");
     }
 
 }

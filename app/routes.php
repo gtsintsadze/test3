@@ -12,35 +12,20 @@ $requestMethod = $_SERVER["REQUEST_METHOD"];
 
 switch ($page) {
     case @"/":
-        $stmt = $products->getData();
-        return $template->render("product-list.php", ["stmt"=> $stmt]);
-        break;
+        $getDvd = $products->getProduct("dvd");
+        $product = $products->getProduct("dvd");
+
+
+        return $template->render("product-list.php", ["product"=> $product]);
     case @"/addproduct":
         return $template->render("add-product.php", );
-        break;
     case @"/add-product":
         if ($requestMethod === "POST")
         {
-            $product_Type = $_POST["product_type"];
 
-            $sku = $_POST["sku"];
-            $name = $_POST["name"];
-            $price = $_POST["price"];
+            $saveProduct = $products->saveMainProd($_POST["sku"],$_POST["name"],$_POST["price"]);
+            $saveProductDesc = $products->saveDvd($_POST["size"]);
 
-            if ($product_Type === "dvd")
-            {
-                // todo
-            }
-
-            if ($product_Type === "furniture")
-            {
-                // todo
-            }
-
-            if ($product_Type === "book")
-            {
-                // todo
-            }
         }
         break;
 }

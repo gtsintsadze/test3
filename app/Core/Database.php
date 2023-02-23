@@ -28,15 +28,52 @@ class Database
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function getData()
-    {
-        return $this->pdo->query("SELECT * FROM product")->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function save($tableName, array $keyValue)
+    public function getProduct($tableName)
     {
 
+        $sql = "SELECT * FROM $tableName JOIN product p ON ($tableName.product_id = p.product_id)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute();
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $collection = [];
+
+        foreach ($data as $item)
+        {
+            $collection[] = $item;
+            echo "<pre>";
+            var_dump($data);
+            echo "</pre>";
+
+        }
+        return $collection;
     }
+
+    public function getDvd()
+    {
+        return $this->pdo->query("SELECT * FROM dvd")->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+
+
+    public function saveDvd($size)
+    {
+        $sql = "INSERT INTO dvd (size, product_id) VALUES ($size, 1)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute();
+
+    }
+
+
+    public function saveMainProd($sku, $name, $price)
+    {
+        $floatedPRice = floatval($price);
+        $sql = "INSERT INTO product (sku, name, price, type_id) VALUES ($sku, $name, $floatedPRice, 1)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute();
+    }
+
 
     public function delete()
     {

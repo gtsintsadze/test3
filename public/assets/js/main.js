@@ -30,7 +30,10 @@ function saveProduct() {
         for(let index in inputs) {
             inputs[index].value = ""
         }
+
+        // location.href = "/"
     })
+    console.log(dataForSend)
 }
 
 function cancel()
