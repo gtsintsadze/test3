@@ -4,34 +4,47 @@ namespace app\Model;
 
 class Furniture extends AbstractProduct
 {
-    public function setHeight(float $height): void
+    private int $height;
+    private int $width;
+    private int $length;
+
+    public function setHeight(int $height): void
     {
-        // Todo
+        $this->height = $height;
     }
 
-    public function getHeight()
+    public function getHeight(): int
     {
-        // Todo
+        return $this->height;
     }
 
-    public function setWidth(float $width): void
+    public function setWidth(int $width): void
     {
-        // Todo
+        $this->width = $width;
     }
 
-    public function getWidth()
+    public function getWidth(): int
     {
-        // Todo
+        return $this->width;
     }
 
-    public function setLength(float $length): void
+    public function setLength(int $length): void
     {
-        // Todo
+        $this->length = $length;
     }
 
-    public function getLength()
+    public function getLength(): int
     {
-        // Todo
+        return $this->length;
     }
 
+    public function saveFurniture()
+    {
+        $this->saveMainProduct("furniture");
+
+        $productId = $this->getLastId()[0]["product_id"];
+        $sql = "INSERT INTO furniture (height, width, length, product_id) VALUES (?, ?, ?, ?)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$this->getHeight(), $this->getWidth(), $this->getLength(), $productId]);
+    }
 }

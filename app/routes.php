@@ -1,31 +1,51 @@
 <?php
 
-use app\Core\Database;
 use app\Core\Template;
+use app\Core\ValidateData;
+use app\Model\Book;
+use app\Model\Dvd;
+use app\Model\Furniture;
 
 $template = new Template();
-
-$products = new Database();
 
 $page = $_SERVER["REQUEST_URI"] ?? null;
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
-switch ($page) {
+switch ($page)
+{
     case @"/":
-        $getDvd = $products->getProduct("dvd");
-        $product = $products->getProduct("dvd");
+        $dvdCollection = new Dvd();
+        $furnitureCollection = new Furniture();
+        $bookCollection = new Book();
 
-
-        return $template->render("product-list.php", ["product"=> $product]);
+        $template->render("product-list.php",
+            [
+                "dvd" => $dvdCollection->getCollection("dvd"),
+                "furniture" => $furnitureCollection->getCollection("furniture"),
+                "book" => $bookCollection->getCollection("book")
+            ]);
+        break;
     case @"/addproduct":
-        return $template->render("add-product.php", );
-    case @"/add-product":
+        $validator = new ValidateData();
+
         if ($requestMethod === "POST")
         {
-
-            $saveProduct = $products->saveMainProd($_POST["sku"],$_POST["name"],$_POST["price"]);
-            $saveProductDesc = $products->saveDvd($_POST["size"]);
+            if ($validator->validatePostedData())
+            {
+                $template->render("add-product.php", ["err" => $validator->getErrors()]);
+            }
 
         }
+        $template->render("add-product.php", ["err" => []]);
+        break;
+    case @"/massdelete":
+        if ($requestMethod === "POST")
+        {
+            $deleteData = new Dvd();
+            $deleteData->massDelete([$_POST["ids"]]);
+        }
+        break;
+    default:
+        $template->render("_404.php");
         break;
 }

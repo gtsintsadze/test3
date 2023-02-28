@@ -1,10 +1,6 @@
-// var script = document.createElement('script');
-// script.src = 'https://code.jquery.com/jquery-3.6.3.min.js'; // Check https://jquery.com/ for the current version
-// document.getElementsByTagName('head')[0].appendChild(script);
-
 function addProduct()
 {
-    document.getElementById("product-add-btn")
+    $("#product-add-btn")
     {
         location.href = "/addproduct"
     }
@@ -13,32 +9,31 @@ function addProduct()
 function saveProduct() {
     let dataForSend = {}
 
-    let inputs = Array.from(document.querySelectorAll("#product-form input"))
+    let inputs = Array.from($("#product-form input"))
 
     inputs = inputs.filter(i => i.value)
+    inputs.forEach(i => dataForSend[i.id] = i.value )
 
-    inputs.forEach(i => dataForSend[i.id] = i.value)
-    dataForSend["product_type"] = document.querySelector("#productType").value
+    dataForSend["product_type"] = $("#productType").val()
 
     $.ajax({
         type: "POST",
-        url: "add-product",
+        url: "addproduct",
         data: dataForSend,
-    }).done(function () {
-        let inputs = Array.from(document.querySelectorAll("#product-form input"))
-        // inputs.map(p => p.value = "")
+    }).then(() => {
+        let inputs = Array.from($("#product-form input"))
         for(let index in inputs) {
             inputs[index].value = ""
         }
-
         // location.href = "/"
+    }).catch((err) => {
+        console.log(JSON.stringify(err.responseText))
     })
-    console.log(dataForSend)
 }
 
 function cancel()
 {
-    document.getElementById("product-cancel-btn")
+    $("#product-cancel-btn")
     {
         location.href = "/"
     }
@@ -46,26 +41,47 @@ function cancel()
 
 function typeSwitcher()
 {
-    let productsInput = Array.from(document.querySelectorAll(".products input"))
+    let productsInput = Array.from($(".products input"))
     for (let index in productsInput) productsInput[index].value = ""
 
     let dvd = $(".dvd-container")
     let furniture = $(".furniture-container")
     let book = $(".book-container")
 
-    let typeValue = document.querySelector("#productType").value
+    let typeValue = $("#productType").val()
 
-    if (typeValue === "dvd") dvd.css("display", "block")
-    else dvd.css("display", "none")
+    if (typeValue === "dvd") dvd.show()
+    else dvd.hide()
 
-    if (typeValue === "furniture") furniture.css("display", "block")
-    else furniture.css("display", "none")
+    if (typeValue === "furniture") furniture.show()
+    else furniture.hide()
 
-    if (typeValue === "book") book.css("display", "block")
-    else book.css("display", "none")
+    if (typeValue === "book") book.show()
+    else book.hide()
 }
 
 function deleteProduct()
 {
-    //todo
+    let ids = []
+    let checkboxes = $(".delete-checkbox")
+
+    for(let i=0, n=checkboxes.length;i<n;i++) {
+        if (checkboxes[i].checked) {
+            ids.push(checkboxes[i].value)
+        }
+    }
+    if (ids.length > 0) {
+        $.ajax({
+            type: "POST",
+            url: "massdelete",
+            data: {
+                ids: ids
+            },
+        }).then((resp) => {
+            console.log("massdelete then", resp)
+            location.reload()
+        }).catch((err) => {
+            console.log("massdelete catch", err)
+        })
+    }
 }

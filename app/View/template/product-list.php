@@ -16,48 +16,42 @@
             <button id="product-delete-btn" onclick="deleteProduct()">MASS DELETE</button>
         </div>
     </div>
-
     <div class="product-list-content">
-
-        <?php
-
-
-
-
-        ?>
-
-        <?php foreach ($product as $itemProduct):?>
-
+        <?php foreach ($dvd as $productItem):?>
             <div class="product" id="">
-                <input type="checkbox" class="delete-checkbox">
+                <input type="checkbox" class="delete-checkbox" value="<?php echo $productItem["product_id"]?>">
                 <div class="product-desc">
-                    <div class="product-sku"><?php echo $itemProduct["sku"]?></div>
-                    <div class="product-name"><?php echo $itemProduct["name"]?></div>
-                    <div class="product-price"><?php echo $itemProduct["price"], " $" ?> </div>
-                    <?php if ($itemProduct["type_id"] === 1):  ?>
-                        <div class="product-desc"><?php echo "Size: ", $itemProduct["size"], " MB"?></div>
-                    <?php endif; ?>
+                    <div class="product-sku"><?php echo $productItem["sku"]?></div>
+                    <div class="product-name"><?php echo $productItem["name"]?></div>
+                    <div class="product-price"><?php echo $productItem["price"], " $" ?> </div>
+                    <div class="product-desc"><?php echo "Size: ", $productItem["size"], " MB"?></div>
                 </div>
             </div>
         <?php endforeach;?>
 
+        <?php foreach ($furniture as $productItem):?>
+            <div class="product" id="">
+                <input type="checkbox" class="delete-checkbox" value="<?php echo $productItem["product_id"]?>">
+                <div class="product-desc">
+                    <div class="product-sku"><?php echo $productItem["sku"]?></div>
+                    <div class="product-name"><?php echo $productItem["name"]?></div>
+                    <div class="product-price"><?php echo $productItem["price"], " $" ?> </div>
+                    <div class="product-desc"><?php echo "Dimension: ", $productItem["height"],"x",$productItem["width"],"x",$productItem["length"]?></div>
+                </div>
+            </div>
+        <?php endforeach;?>
 
-
-
-
-
-<!--        --><?php //foreach ($product as $itemProduct):?>
-<!--            <div class="product" id="--><?php //echo $itemProduct['product_id']?><!--">-->
-<!--                <input type="checkbox" class="delete-checkbox">-->
-<!--                <div class="product-desc">-->
-<!--                    <div class="product-sku">--><?php //echo $itemProduct["sku"]?><!--</div>-->
-<!--                    <div class="product-name">--><?php //echo $itemProduct["name"]?><!--</div>-->
-<!--                    <div class="product-price">--><?php //echo $itemProduct["price"], " $" ?><!-- </div>-->
-<!--                    <div class="product-desc">--><?php //echo "Size: " ?><!--</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        --><?php //endforeach;?>
-
+        <?php foreach ($book as $productItem):?>
+            <div class="product" id="">
+                <input type="checkbox" class="delete-checkbox" value="<?php echo $productItem["product_id"]?>">
+                <div class="product-desc">
+                    <div class="product-sku"><?php echo $productItem["sku"]?></div>
+                    <div class="product-name"><?php echo $productItem["name"]?></div>
+                    <div class="product-price"><?php echo $productItem["price"], " $" ?> </div>
+                    <div class="product-desc"><?php echo "Weight: ", $productItem["weight"], " KG"?></div>
+                </div>
+            </div>
+        <?php endforeach;?>
 </div>
     <div class="product-list-footer">
         <footer>

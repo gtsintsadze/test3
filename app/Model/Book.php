@@ -4,13 +4,26 @@ namespace app\Model;
 
 class Book extends AbstractProduct
 {
-    public function setWeight(float $weight): void
+    private int $weight;
+
+    public function setWeight(int $weight): void
     {
-        $this->setData("weight", $weight);
+        $this->weight = $weight;
     }
 
-    public function getWeight()
+    public function getWeight(): int
     {
-        // todo
+        return $this->weight;
     }
+
+    public function saveBook()
+    {
+        $this->saveMainProduct("book");
+
+        $productId = $this->getLastId()[0]["product_id"];
+        $sql = "INSERT INTO book (weight, product_id) VALUES (?,?)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([$this->getWeight(), $productId]);
+    }
+
 }
